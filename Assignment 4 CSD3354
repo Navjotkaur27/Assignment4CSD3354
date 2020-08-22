@@ -1,0 +1,137 @@
+using System;
+
+namespace ConsoleApp10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Manager.Run();
+            Manager.ReportOnEmployee("Nav");
+        }
+    }
+
+    class Manager
+    {
+        // # todo: create an array with 100 Employees:
+        static Employee[] EmployeeList = new Employee[100];
+        static string[] EmployeeNames = new string[100];
+
+        private static void Initialize()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                EmployeeNames[i] = Convert.ToString(5 + i);
+            }
+        }
+
+        public static void Run(object mgrname)
+        {
+            int counter = 0;
+            Manager.Initialize();
+            // use the Factory Design Pattern to generate 100 Employees
+            for (int i = 0; i < 100; i++)
+            {
+                if (i < 20)
+                {
+                    EmployeeList[i] = new Employee(EmployeeNames[counter++], "Manager", "Nav");
+                }
+                else if (i >= 20 || i < 40)
+                {
+                    EmployeeList[i] = new Employee(EmployeeNames[counter++], "Supervisor", "Jot");
+                }
+                else if (i >= 40 || i < 60)
+                {
+                    EmployeeList[i] = new Employee(EmployeeNames[counter++], "Assistant", "Kaur");
+                }
+                else if (i >= 60 || i < 80)
+                {
+                    EmployeeList[i] = new Employee(EmployeeNames[counter++], "Coperative", "Bhangu");
+                }
+                else
+                {
+                    EmployeeList[i] = new Employee(EmployeeNames[counter++], "Salesman", "Miss");
+                }
+
+                if (counter > 100)
+                {
+                    counter = 0;
+                }
+            }
+
+            static void ReportOnEmployee(string mgrname)
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    if ((EmployeeList[i].getManager().Equals(mgrname){
+                        Console.WriteLine(EmployeeList[i].getEmpName() + " works in department" + EmployeeList[i].getdept();
+                    }
+                }
+            }
+
+        }
+
+        internal static void ReportOnEmployee(string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static void Run()
+        {
+            throw new NotImplementedException();
+        }
+
+        class Employee
+        {
+            private string EmpName;
+            private string dept;
+            private int EmpID = 1111;
+            private string Mgr;
+
+            public Employee(string EName, string Edept, string Emgr)
+            {
+                this.EmpName = EName;
+                this.dept = Edept;
+                this.EmpID++;
+                this.Mgr = Emgr;
+            }
+
+            public string getEmpName()
+            {
+                return this.EmpName;
+            }
+
+            public void setEmpName(string sName)
+            {
+                this.EmpName = sName;
+            }
+
+
+            public string getdept()
+            {
+                return this.dept;
+            }
+
+            public void setdept(string dept)
+            {
+                this.dept = dept;
+            }
+
+            public int getEmpID()
+            {
+                return this.EmpID;
+            }
+
+            public string getManager()
+            {
+                return this.Mgr;
+            }
+
+            public void setMgr(string mgr)
+            {
+                this.Mgr = mgr;
+            }
+
+        }
+    }
+
